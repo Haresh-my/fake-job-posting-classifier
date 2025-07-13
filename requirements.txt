@@ -2,5 +2,4 @@ streamlit
 pandas
 scikit-learn
 xgboost
-joblib
 cloudpickle
