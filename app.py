@@ -3,7 +3,7 @@ import pandas as pd
 import cloudpickle as cp
 
 # Load your saved model
-# @st.cache_resource
+@st.cache_resource
 def load_model():
     with open("fake_job_model.pkl", "rb") as f:
         model = cp.load(f)
