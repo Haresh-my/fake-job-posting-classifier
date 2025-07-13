@@ -2,4 +2,5 @@ streamlit==1.33.0
 pandas==2.3.1
 scikit-learn==1.6.1
 xgboost==2.0.3
-cloudpickle
+numpy==1.26.4
+cloudpickle==3.1.1
