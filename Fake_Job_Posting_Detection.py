@@ -13,13 +13,14 @@ import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
 import cloudpickle as cp
-def data(zip_path ,inner_csv ):
+
+
+def load_data(zip_path, inner_csv):
     print("Loading Data from Zip File...")
     with zipfile.ZipFile(zip_path) as zip_file:
-        with zip_file.open("fake_job_postings.csv") as f:
+        with zip_file.open(inner_csv) as f:
             df = pd.read_csv(f)
-
-    print(f" Data loaded from zip. Shape: {df.shape}")
+    print(f"✅ Data loaded from zip. Shape: {df.shape}")
     return df
 
 
@@ -30,7 +31,7 @@ def clear_missing (df):
     return df
 
 
-def spliting_data(df):
+def split_data(df):
     print("Splitting data into train and test sets...")
     X = df[['description', 'company_profile', 'salary_range', 'location', 'has_company_logo']]
     y = df["fraudulent"]
@@ -70,45 +71,22 @@ def scam_score(text):
     ]
     return sum(word in text.lower() for word in scam_keywords)
 
-def train_model(model, X_test, y_test):
-    print("Evaluation of the Model...")
-    y_pred = model.predict(X_test)
-    print("Model evaluation completed.")
-    print("\n Confusion Matrix:\n", confusion_matrix(y_test, y_pred))
-    print( "\n Classification report : \n " , classification_report(y_test, y_pred))
-    # sns.heatmap(confusion_matrix(y_test, y_pred), annot=True, fmt='d', cmap='Blues')
-    # plt.title("Confusion Matrix")
-    # plt.xlabel("Predicted")
-    # plt.ylabel("Actual")
-    # plt.show()
-    # print("Model training completed.")
 
-def save_model(model, filename="fake_job_model.pkl"):
-    """Save the trained pipeline/model using cloudpickle."""
-    with open(filename, "wb") as f:
+def save_model(model, path="fake_job_model.pkl"):
+    with open(path, "wb") as f:
         cp.dump(model, f)
-    print(f"✅ Model saved successfully to {filename}")
+    print(f"✅ Model saved successfully as {path}")
 
 
 def main():
-    try:
-        df = data(r"C:\Users\Harsh Sharma\Downloads\fake_job_postings.zip", "fake_job_postings.csv")
-        df = clear_missing(df)
-        X_train, X_test, y_train, y_test = spliting_data(df)
-        
-        
-        model = build_pipeline()
-        print(" Training model...")
-        
-        model.fit(X_train, y_train)
-        print(" Model trained successfully.")
-        
-        
-        train_model(model, X_test, y_test)
-        save_model(model)
+    df = load_data("C:/Users/Harsh Sharma/Downloads/Fake_job_postings.zip", "fake_job_postings.csv")
+    df = clear_missing(df)
+    df['scam_score'] = df['description'].apply(scam_score)
+    X_train, X_test, y_train, y_test = split_data(df)
+    model = build_pipeline()
+    model.fit(X_train, y_train)
+    save_model(model)
 
-    except Exception as e:
-        print(f"An error occurred: {e}")
     
 # ✅ Run Everything
 if __name__ == "__main__":
