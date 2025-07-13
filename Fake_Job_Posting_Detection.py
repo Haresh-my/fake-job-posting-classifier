@@ -12,7 +12,7 @@ import zipfile
 import joblib
 import matplotlib.pyplot as plt
 import seaborn as sns
-
+import cloudpickle as cp
 def data(zip_path ,inner_csv ):
     print("Loading Data from Zip File...")
     with zipfile.ZipFile(zip_path) as zip_file:
@@ -83,10 +83,11 @@ def train_model(model, X_test, y_test):
     # plt.show()
     # print("Model training completed.")
 
-def save_model(model, path = "fake_job_model.joblib"):
-    print(f"Saving model to {path}...")
-    joblib.dump(model, path)
-    print("Model saved successfully.")
+def save_model(model, filename="fake_job_model.pkl"):
+    """Save the trained pipeline/model using cloudpickle."""
+    with open(filename, "wb") as f:
+        cp.dump(model, f)
+    print(f"✅ Model saved successfully to {filename}")
 
 
 def main():

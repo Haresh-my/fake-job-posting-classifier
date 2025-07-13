@@ -1,9 +1,14 @@
 import streamlit as st
 import pandas as pd
-import joblib
+import cloudpickle as cp
 
 # Load your saved model
-model = joblib.load("fake_job_model.joblib")
+def load_model():
+    with open("fake_job_model.pkl", "rb") as f:
+        model = cp.load(f)
+    return model
+
+model = load_model()
 
 # App title
 st.title("🕵️‍♂️ Fake Job Posting Detector")
