@@ -3,4 +3,6 @@ pandas==2.3.1
 scikit-learn==1.6.1
 xgboost==2.0.3
 numpy==1.26.4
+SMOTE 
+joblib
 cloudpickle==3.1.1
