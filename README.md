@@ -99,3 +99,8 @@ matplotlib
 seaborn
 wordcloud
 jupyter
+
+## Classification Report
+<img width="640" height="480" alt="fake job post" src="https://github.com/user-attachments/assets/fbc0077f-a0f4-4387-9cdb-6ae29427416d" />
+
+
