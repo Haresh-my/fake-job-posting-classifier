@@ -1,4 +1,10 @@
-# fake-job-posting-classifier
+         
+                                      ## 🌐 Live DemoTry the app here 👉 [fake-job-posting-classifier.onrender.com](https://fake-job-posting-classifier.onrender.com)
+
+
+# fake-job-posting-classifier 
+
+
 # 🕵️‍♂️ Fake Job Detector
 
 ## [![Live App](https://img.shields.io/badge/Live-Fake_Job_Classifier-green?style=for-the-badge&logo=streamlit)](https://fake-job-posting-classifier.onrender.com)
