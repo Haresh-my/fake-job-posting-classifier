@@ -1,6 +1,9 @@
 # fake-job-posting-classifier
 # 🕵️‍♂️ Fake Job Detector
 
+## [![Live App](https://img.shields.io/badge/Live-Fake_Job_Classifier-green?style=for-the-badge&logo=streamlit)](https://fake-job-posting-classifier.onrender.com)
+
+
 Detect fake job postings using Machine Learning.  
 This project uses **TF-IDF for text feature extraction**, **XGBoost** for classification, and handles **class imbalance** in a real-world job dataset.
 
